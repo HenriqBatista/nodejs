@@ -1,0 +1,24 @@
+h1 {
+    color: black;
+    text-decoration: underline;
+    font-style: italic;
+    
+}
+
+h1:hover{
+    background-color: chocolate;
+}
+
+h2{
+    color:blue
+}
+
+p{
+    color:purple
+}
+
+.home{
+    background-color:darkgray;
+    height: 400px;
+    
+}

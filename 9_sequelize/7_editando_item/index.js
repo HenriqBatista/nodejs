@@ -37,8 +37,36 @@ app.post('/users/create', async (req, res) => {
 
 })
 
-app.get("/", (req, res) => {
-  res.render("home");
+app.get('/user/:id', async (req, res) => {
+const id = req.params.id
+
+
+const user = await User.findOne({raw:true , where: {id: id}})
+console.log(user)
+res.render('userview', {user})
+})
+
+app.post('/users/delete/:id', async (req, res) => {
+  const id = req.params.id
+
+  User.destroy({where: {id: id}})
+  res.render('/')
+})
+
+app.get('/user/edit/:id', async (req, res) => {
+  const id = req.params.id
+
+  const user = await User.findOne({raw:true, where: {id: id}})
+  res.render('useredit', {user})
+})
+
+
+
+app.get("/", async (req, res) => {
+  const users = await User.findAll({raw:true})
+
+  console.log(users)
+  res.render("home", {users: users});
 });
 
 
